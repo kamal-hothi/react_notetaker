@@ -16,5 +16,5 @@ var Main = React.createClass({
     )
   }
 });
+module.exports = Main;
 
-ReactDOM.render(<Main />, document.getElementById('app'));
