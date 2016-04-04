@@ -25,6 +25,10 @@ var Profile = React.createClass({
   componentWillUmount: function(){
     this.unbind('notes')
   },
+  handleAddNote: function(newNote){
+    // Update firebase with the newNote
+    this.ref.child(this.props.params.username).child(this.state.notes.length).set(newNote);
+  },
   render: function(){
     console.log(this.props)
     return (
@@ -33,10 +37,10 @@ var Profile = React.createClass({
           <UserProfile username={this.props.params.username} bio={this.state.bio} />
         </div>
         <div className="col-md-4">
-          <Repos  repos={this.state.repos} />
+          <Repos username={this.props.params.username} repos={this.state.repos} />
         </div>
         <div className="col-md-4">
-          <Notes username={this.props.params.username} notes={this.state.notes} />
+          <Notes  username={this.props.params.username} notes={this.state.notes} addNote={this.handleAddNote}/>
         </div>
       </div>
     )
