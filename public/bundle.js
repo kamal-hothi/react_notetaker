@@ -24753,7 +24753,7 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(158);
+	var SearchGithub = __webpack_require__(227);
 
 	var Main = React.createClass({
 	  displayName: 'Main',
@@ -24768,7 +24768,7 @@
 	        React.createElement(
 	          'div',
 	          { className: 'col-sm-7 col-sm-offset-2', style: { marginTop: 15 } },
-	          'Menu'
+	          React.createElement(SearchGithub, null)
 	        )
 	      ),
 	      React.createElement(
@@ -24779,6 +24779,7 @@
 	    );
 	  }
 	});
+
 	module.exports = Main;
 
 /***/ },
@@ -25709,6 +25710,56 @@
 	});
 
 	module.exports = AddNote;
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var Router = __webpack_require__(159);
+
+	var SearchGithub = React.createClass({
+	  displayName: 'SearchGithub',
+
+	  mixins: [Router.History],
+	  getRef: function getRef(ref) {
+	    this.usernameRef = ref;
+	  },
+	  handleSubmit: function handleSubmit() {
+	    var username = this.usernameRef.value;
+	    this.usernameRef.value = '';
+	    this.history.pushState(null, "profile/" + username);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'col-sm-12' },
+	      React.createElement(
+	        'form',
+	        { onSubmit: this.handleSubmit },
+	        React.createElement(
+	          'div',
+	          { className: 'form-group col-sm-7' },
+	          React.createElement('input', { type: 'text', className: 'form-control', ref: this.getRef })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'form-group col-sm-5' },
+	          React.createElement(
+	            'button',
+	            { type: 'submit', className: 'btn btn-block btn-primary' },
+	            'Search Github'
+	          )
+	        )
+	      )
+	    );
+	  }
+
+	});
+
+	module.exports = SearchGithub;
 
 /***/ }
 /******/ ]);
